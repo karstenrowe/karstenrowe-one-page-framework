@@ -1,0 +1,580 @@
+// Created: @karstenrowe 20-20-2013
+// Project: @karstenrowe bootstrap framework
+
+// import bootstrap
+@import "bootstrap.less";
+
+
+/* ============================ */
+/* = font = */
+/* ============================ */
+@headline-font: 'Crete Round', serif; // 400
+@body-font: 'Lato', sans-serif; // 400, 700, 400italic
+
+@big: 17px; // line-height: 23px;
+@normal: 15px; // line-height: 21px;
+@small: 13px; // line-height: 16px;
+@tiny: 11px;
+/* ============================ */
+
+
+/* ============================ */
+/* = color = */
+/* ============================ */
+@brand-dk: #a83430; // rose
+@brand: #d74641; // base brand color
+@brand-lt: #fa4a62;
+@brand-bg: lighten(@brand-lt, 33%);
+
+@green-dk: #26ae87;
+@green: #74ffd7;
+@green-lt: #d4fff3;
+
+@blue-dk: #386ABE /* darken(@blue, 20%) */;
+@blue: #4786f1;
+@blue-lt: #d3e3ff;
+
+@grey-dk: #403d38;
+@grey: #5d5a56;
+@grey-lt: #ccc9c6;
+
+@off-white: #f1f3f6; // base color
+@warm-white: #ebe7e4;
+@white: #ffffff;
+/* ============================ */
+
+
+/* ============================ */
+/* = selection color = */
+/* ============================ */
+::-moz-selection {
+  text-shadow: none;
+	color: @brand-dk;
+  background: @brand-lt;
+}
+::selection {
+  text-shadow: none;
+	color: @brand-dk;
+  background: @brand-lt;
+}
+/* ============================ */
+
+
+/* ============================ */
+/* = toolbox = */
+/* ============================ */
+// retina mixin
+@highdpi: ~"(-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-resolution: 1.5dppx)";
+
+.2x(@path, @position, @w: auto, @h: auto) {
+	background-image: url(@path);
+	background-repeat: ~"@{position}";
+	@at2x_path: ~`"@{path}".split('.').slice(0, "@{path}".split('.').length - 1).join(".") + "_2x" + "." + "@{path}".split('.')["@{path}".split('.').length - 1]`;
+
+	@media @highdpi {
+		background-image: url(@at2x_path);
+		background-repeat: ~"@{position}";
+		background-size: @w @h;
+	}
+}
+// clearfix
+.clearfix() {
+	zoom: 1;
+	&:before,
+	&:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
+	&:after { clear: both; }
+}
+/* ============================ */
+
+
+/* ============================ */
+/* = framework = */
+/* ============================ */
+body {
+	font-family: @body-font;
+	font-size: @normal;
+	font-weight: normal;
+	line-height: 21px;
+	color: @grey;
+	background-color: lighten(@warm-white, 7%);
+  min-height: 740px; // forces scroll so fixed navigation is noticeable on shorter pages
+
+  padding-top: 100px;
+	.2x('http://karstenrowe.files.wordpress.com/2013/11/footer-bg.jpg', "no-repeat", 1000px, 200px); // asset hosted on WordPress
+	background-position: 50% 100%;
+}
+/* ============================ */
+
+
+/* ============================ */
+/* = typography = */
+/* ============================ */
+h1,
+h2 {
+	font-family: @headline-font;
+	line-height: 40px;
+}
+h3 {
+	font-family: @headline-font;
+	line-height: 30px;
+}
+h4,
+h5,
+h6 {
+	font-family: @body-font;
+	font-weight: bold;
+}
+/* ============================ */
+
+
+/* ============================ */
+/* = common elements = */
+/* ============================ */
+body {
+	// links
+	a {
+		text-decoration: none;
+		color: @brand;
+		&:focus,
+		&:hover {
+			text-decoration: underline;
+			color: @brand-dk;
+		}
+		&:active {
+			text-decoration: underline;
+			color: @brand-lt;
+			background: @green-lt;
+		}
+	}
+	// buttons
+	.btn-primary {
+		text-shadow: 0 1px 1px rgba(0,0,0, 0.15);
+	  color: #fff;
+	  background-color: @brand;
+	  box-shadow: inset 0 1px 1px rgba(255,255,255, 0.35), 0 1px 1px rgba(0,0,0, 0.2);
+	  border-color: @brand-dk;
+	  margin: 8px 6px 8px 0;
+		&:hover {
+			text-shadow: 0 -1px 1px rgba(0,0,0, 0.3);
+			color: @off-white;
+		  box-shadow: inset 0 0px 0px 1px rgba(255,255,255, 0.15), 0 1px 1px rgba(0,0,0, 0.3);
+		  background-color: darken(@brand,10%);
+		  border-color: darken(@brand-dk, 20%);
+		}
+		&:active {
+			text-shadow: 0 -1px 1px rgba(0,0,0, 0.3);
+			background-color: @brand;
+		  box-shadow: inset 0 1px 3px rgba(0,0,0, 0.2), 0 1px 1px rgba(255,255,255, 0.5);
+			box-shadow: none;
+		  border-color: @brand-dk;
+		}
+		span {
+			font-size: 13px;
+			text-shadow: 0 1px 1px rgba(255,255,255, 0.2);
+			color: darken(@brand-dk, 20%);
+			margin-left: 3px;
+		}
+	}
+	// remove webkit blue glow on focus
+	button,
+	input:focus,
+	textarea:focus {
+	  outline: none;
+	}
+}
+/* ============================ */
+
+/* ============================ */
+/* = navigation = */
+/* ============================ */
+.navbar {
+	background-image: none !important; // removes theme gradient
+	background: @off-white;
+	background: rgba(255,255,255, 0.95);
+	border-color: @grey-lt;
+	margin: 0;
+	padding: 0;
+	.navbar-header {
+		float: none;
+	}
+	.navbar-header {
+		font-size: 12px;
+		font-weight: bold;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		line-height: 80px; // vertically centers text to container
+		height: 80px;
+		z-index: 1;
+		overflow: hidden;
+		padding: 0;
+		transition: all 0.4s; // add smooth transition
+		&.state-shrink {
+			font-size: 11px;
+			line-height: 51px; // vertically centers text to container
+			height: 40px;
+			.navbar-brand {
+				background-size: 25%;
+				a {
+					padding: 0 0 0 46px;
+				}
+			}
+		}
+	}
+	.navbar-header-inner {
+		.clearfix;
+	}
+	nav {
+		&.left {
+			float: left;
+			padding: 0 0 0 20px;
+		}
+		&.right {
+			float: right;
+			padding: 0 20px 0 0;
+		}
+	}
+	// ul
+	ul {
+		// shared
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		li {
+			display: inline-block;
+			//float: left;
+			margin: 0 8px;
+		}
+	}
+	a {
+		&:hover {
+			text-decoration: none;
+		}
+	}
+	// logo
+	.navbar-brand {
+		//text-indent: -9999px; // shunt actual text off the page, replace with logo-nav.pngx
+		.2x('../img/brand/logo-nav.png', "no-repeat", 45px, 33px);
+		background-position: 0 45%;
+		float: none;
+		display: inline-block;
+		a {
+			color: @grey;
+			padding: 0 0 0 60px;
+			&:hover {
+				text-decoration: none;
+			}
+			&:active {
+				background: none;
+				opacity: 0.5;
+			}
+		}
+		&:hover {
+			opacity: 0.9;
+		}
+	}
+}
+/* ============================ */
+
+
+/* ============================ */
+/* = page header = */
+/* ============================ */
+.page-header {
+	border-top: 1px dotted @warm-white;
+	border-bottom: 1px dotted @warm-white;
+	margin: 0 0 30px 0;
+	padding: 30px 0 20px;
+}
+/* ============================ */
+
+
+/* ============================ */
+/* = hero = */
+/* ============================ */
+.container {
+	.hero {
+		text-indent: -9999px; // shunt actual text off the page, replace with hero img
+		.2x('../img/hero/img-hero-home.jpg', "no-repeat", 1130px, 500px);
+		//background-size: 100%; // seems to make the layout/hero more responsive
+		background-position: 50% 0;
+		border: none !important;
+		height: 500px;
+		min-width: 1130px;
+		width: 100%;
+		margin: -30px 0 0 0 !important;
+		padding: 0 !important;
+	}
+}
+/* ============================ */
+
+
+/* ============================ */
+/* = jumbotron = */
+/* ============================ */
+.container .jumbotron {
+	text-align: left;
+	border-bottom: 1px dotted @warm-white;
+	.clearfix;
+	margin: 0 0 40px 0;
+	padding: 0 0 40px 0;
+	div {
+		.clearfix;
+	}
+	img {
+		float: left;
+		width: 49%;
+		max-width: 50%;
+		margin: 0;
+		padding: 0;
+	}
+	&:nth-child(odd) img {
+		float: right;
+	}
+	.content-container {
+		float: left;
+		width: 46%;
+		padding: 30px 20px 30px 50px;
+	}
+	h3 {
+		background: none !important;
+		margin: 0 0 10px 0 !important;
+		padding: 0 !important;
+	}
+}
+/* ============================ */
+
+
+/* ============================ */
+/* = patterns = */
+/* ============================ */
+.container {
+	text-shadow: 0 1px 1px rgba(255,255,255, 0.5);
+	padding: 0;
+	// page headline
+	h1 {
+		font-style: italic;
+		text-align: center;
+		color: @grey-dk;
+		margin: 0 0 12px 0;
+		span {
+			color: @brand-dk;
+		}
+	}
+	// p
+	.lead {
+		font-size: @small;
+		font-weight: bold;
+		text-align: center;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		color: @brand;
+	}
+	// section headline
+	h2 {
+		text-align: center;
+		font-style: italic;
+		color: @grey-dk;
+	}
+	h3 {
+		font-size: 24px;
+		color: @brand-dk;
+		//background: @brand-bg;
+		span {
+			font-size: @normal;
+			text-transform: uppercase;
+			color: @grey-lt;
+			margin: 0 6px 0 0;
+		}
+	}
+	p {
+		//text-align: center;
+	}
+	img {
+/*
+		background: #fff;
+		-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+		-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+		box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+		border: 1px solid #ccc9c6;
+		border-radius: 3px;
+*/
+		display: block;
+		width: 280px;
+		max-width: 100%;
+		height: auto;
+		margin: 0 auto;
+		padding: 1px;
+	}
+	.row {
+		text-align: center;
+		margin: 0;
+
+		&.skills {
+			border-bottom: 1px dotted @warm-white;
+			margin: 0 0 60px 0;
+			padding: 0 0 30px 0;
+			h3 {
+				display: inline-block;
+				.2x('http://karstenrowe.files.wordpress.com/2013/11/bg-headline.png', "no-repeat", 147px, 57px);
+				background-position: -20px 0px;
+				margin: 0 0 10px 0;
+				padding: 12px 30px;
+				&.build {
+					.2x('http://karstenrowe.files.wordpress.com/2013/11/bg-headline-rose.png', "no-repeat", 147px, 57px);
+				}
+				&.deliver {
+					.2x('http://karstenrowe.files.wordpress.com/2013/11/bg-headline-grey.png', "no-repeat", 147px, 57px);
+				}
+			}
+		}
+		&.testimonial {
+			blockquote {
+				font-style: italic;
+				text-align: center;
+				border: none;
+				border-top: 1px dotted @warm-white;
+				border-bottom: 1px dotted @warm-white;
+				position: relative;
+				margin: 24px 0;
+				padding: 24px 24px 32px;
+			}
+			cite {
+				font-size: @small;
+				color: @brand-dk;
+			}
+			a {
+				font-size: @tiny;
+				font-style: normal;
+				color: @grey-lt;
+				position: absolute;
+				right: 5px;
+				bottom: 5px;
+			}
+		}
+	}
+	// meta ul
+	.meta {
+		font-size: small;
+		list-style: none;
+		color: @grey-lt;
+		margin: 0;
+		padding: 0;
+		.clearfix;
+		li {
+			float: left;
+			margin: 0 7px 0 0;
+			&:first-child {
+				color: @grey;
+			}
+		}
+	}
+	.footer {
+		font-size: @tiny;
+		color: lighten(@grey, 40%);
+		margin: 20px 0 30px;
+		padding: 20px 0;
+		span {
+			margin: 0 2px;
+		}
+		.left {
+			float: left;
+		}
+		.right {
+			float: right;
+		}
+	}
+}
+/* ============================ */
+
+
+/* ============================ */
+/* = media queries: small screen = */
+/* ============================ */
+@media (max-width: 1200px) {
+	.container {
+		.hero {
+			background-size: 100% !important;
+			min-width: 0;
+			height: 320px;
+		}
+	}
+}
+@media (max-width: 1000px) {
+	.container {
+		.hero {
+			background-size: 100% !important;
+			min-width: 0;
+			height: 240px;
+		}
+		.jumbotron {
+			&:nth-child(odd) img {
+				float: none;
+			}
+			// img
+			.feature {
+				float: none;
+				width: 100%;
+				margin: 0 auto;
+			}
+			.content-container {
+				float: none;
+				width: 100%;
+			}
+		}
+	}
+}
+@media (max-width: 600px) {
+	.container {
+		.menu {
+			&.left {
+				text-align: center;
+				float: none;
+			}
+			&.right {
+			display: none;
+			}
+		}
+		.hero {
+			display: none;
+		}
+		.jumbotron {
+			margin: 0 0 10px 0;
+			padding: 0 0 10px 0;
+			&:nth-child(odd) img {
+				float: none;
+			}
+			// img
+			.feature {
+				display: none;
+			}
+			.content-container {
+				h3 span { display: block; }
+			}
+		}
+		.row {
+			&.skills {
+				margin: 0 0 20px 0;
+				img {
+					width: 240px;
+				}
+			}
+			&.cta {
+				h3 {
+					font-size: @big;
+					line-height: 23px;
+				}
+			}
+			&.testimonial {
+				a { left: 0; }
+			}
+		}
+		.footer {
+			.left,
+			.right {
+				text-align: center;
+				float: none;
+			}
+		}
+	}
+}
+/* ============================ */
