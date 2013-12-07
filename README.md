@@ -1,8 +1,6 @@
-# A one page worksample
+# A one page skeleton web framework
 
-www.karstenrowe.com/projects/worksample/
-
-A simple aim; create a basic, platform to showcase my design work.
+A simple aim; create a one page web project template.
 
 * [Bootstrapped](http://getbootstrap.com/)
 * [LESS](http://lesscss.org/) integrated stylesheets – commented, variables, mixins, retina ready, minified.
