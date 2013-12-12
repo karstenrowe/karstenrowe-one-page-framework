@@ -21,9 +21,9 @@
 /* ============================ */
 /* = color = */
 /* ============================ */
-@brand-dk: #a83430; // rose
-@brand: #d74641; // base brand color
-@brand-lt: #fa4a62;
+@brand-dk: #0a46aa; // blue
+@brand: #4285f4; // base brand color
+@brand-lt: #dae8ff;
 @brand-bg: lighten(@brand-lt, 33%);
 
 @green-dk: #26ae87;
@@ -34,9 +34,9 @@
 @blue: #4786f1;
 @blue-lt: #d3e3ff;
 
-@grey-dk: #403d38;
-@grey: #5d5a56;
-@grey-lt: #ccc9c6;
+@grey-dk: #2a2a2c; // cool grey
+@grey: #5d5f63; // base text color
+@grey-lt: #cccfd3;
 
 @off-white: #f1f3f6; // base color
 @warm-white: #ebe7e4;
@@ -98,10 +98,7 @@ body {
 	color: @grey;
 	background-color: lighten(@warm-white, 7%);
   min-height: 740px; // forces scroll so fixed navigation is noticeable on shorter pages
-
   padding-top: 100px;
-	.2x('http://karstenrowe.files.wordpress.com/2013/11/footer-bg.jpg', "no-repeat", 1000px, 200px); // asset hosted on WordPress
-	background-position: 50% 100%;
 }
 /* ============================ */
 
@@ -253,13 +250,13 @@ body {
 	// logo
 	.navbar-brand {
 		//text-indent: -9999px; // shunt actual text off the page, replace with logo-nav.pngx
-		.2x('../img/brand/logo-nav.png', "no-repeat", 45px, 33px);
-		background-position: 0 45%;
+		.2x('../img/brand/logo-nav.png', "no-repeat", 80px, 80px);
+		background-position: 0 50%;
 		float: none;
 		display: inline-block;
 		a {
 			color: @grey;
-			padding: 0 0 0 60px;
+			padding: 0 0 0 80px;
 			&:hover {
 				text-decoration: none;
 			}
@@ -269,7 +266,7 @@ body {
 			}
 		}
 		&:hover {
-			opacity: 0.9;
+			opacity: 0.85;
 		}
 	}
 }
@@ -294,14 +291,13 @@ body {
 .container {
 	.hero {
 		text-indent: -9999px; // shunt actual text off the page, replace with hero img
-		.2x('../img/hero/img-hero-home.jpg', "no-repeat", 1130px, 500px);
-		//background-size: 100%; // seems to make the layout/hero more responsive
+		.2x('../img/hero/img-hero-home.png', "no-repeat", 1021px, 427px);
 		background-position: 50% 0;
 		border: none !important;
-		height: 500px;
-		min-width: 1130px;
+		height: 427px;
+		min-width: 1021px;
 		width: 100%;
-		margin: -30px 0 0 0 !important;
+		margin: -10px 0 12px 0 !important;
 		padding: 0 !important;
 	}
 }
@@ -322,13 +318,10 @@ body {
 	}
 	img {
 		float: left;
-		width: 49%;
-		max-width: 50%;
+		width: 40%;
+		//max-width: 50%;
 		margin: 0;
 		padding: 0;
-	}
-	&:nth-child(odd) img {
-		float: right;
 	}
 	.content-container {
 		float: left;
@@ -413,18 +406,15 @@ body {
 			border-bottom: 1px dotted @warm-white;
 			margin: 0 0 60px 0;
 			padding: 0 0 30px 0;
+			img {
+				width: 180px;
+				margin-bottom: 10px;
+			}
 			h3 {
 				display: inline-block;
-				.2x('http://karstenrowe.files.wordpress.com/2013/11/bg-headline.png', "no-repeat", 147px, 57px);
 				background-position: -20px 0px;
 				margin: 0 0 10px 0;
 				padding: 12px 30px;
-				&.build {
-					.2x('http://karstenrowe.files.wordpress.com/2013/11/bg-headline-rose.png', "no-repeat", 147px, 57px);
-				}
-				&.deliver {
-					.2x('http://karstenrowe.files.wordpress.com/2013/11/bg-headline-grey.png', "no-repeat", 147px, 57px);
-				}
 			}
 		}
 		&.testimonial {
@@ -507,9 +497,6 @@ body {
 			height: 240px;
 		}
 		.jumbotron {
-			&:nth-child(odd) img {
-				float: none;
-			}
 			// img
 			.feature {
 				float: none;
@@ -540,9 +527,6 @@ body {
 		.jumbotron {
 			margin: 0 0 10px 0;
 			padding: 0 0 10px 0;
-			&:nth-child(odd) img {
-				float: none;
-			}
 			// img
 			.feature {
 				display: none;
