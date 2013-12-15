@@ -1,4 +1,4 @@
-# A one page skeleton web framework
+# A one-page skeleton web framework
 
 A simple aim; create a one page web project template.
 
